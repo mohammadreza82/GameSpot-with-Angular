@@ -1,0 +1,55 @@
+@if(showAlert){
+  <app-alert  [color]="alertColor">
+    {{ alertMsg }}
+  </app-alert>
+  }
+  
+<form #loginForm="ngForm" (ngSubmit)="login()">
+  <!-- Email -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">ایمیل</label>
+    <input type="email" email required ngModel [(ngModel)]="credentials.email" name="email" #email="ngModel"
+      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+        duration-500 focus:outline-none rounded bg-transparent
+        focus:border-indigo-400"
+      placeholder=" ایمیل"
+      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+   
+    @if(email.invalid && email.touched){
+      <p class="text-red-400 font-DanaMedium">این فیلد اجباری است</p>
+    }
+    @if(email.errors?.['pattern']){
+      <p class="text-red-400 font-DanaMedium">ایمیل وارد شده معتبر نیست</p>
+    }
+
+  </div>
+  <!-- Password -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">رمز عبور</label>
+     <input type="password" required [(ngModel)]="credentials.password" name="password" minlength="8" #password="ngModel"
+      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+      duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+      placeholder="رمز عبور" 
+      pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$">
+   
+      @if(password.invalid && password.touched){
+        <p class="text-red-400 font-DanaMedium">این فیلد اجباری است</p>
+      }
+      @if(password.errors?.['pattern']){
+        <p class="text-red-400 font-DanaMedium">کلمه عبود معتبر نیست باید دارای حداقل یک حرف بزرگ و $ %^&*- &#64; باشد</p>
+      }
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="loginForm.invalid"
+    class="block w-full text-white py-1.5 px-3 rounded transition font-DanaBold"
+    [class]="{
+      'bg-indigo-400': !loginForm.invalid,
+      'hover:bg-indigo-500': !loginForm.invalid,
+      'bg-gray-400': loginForm.invalid
+    }"
+  >
+    ورود
+  </button>
+</form>

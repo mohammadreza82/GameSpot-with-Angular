@@ -1,0 +1,74 @@
+@if (showAlert) {
+<app-alert [color]="color">
+  {{ alertMessage }}
+</app-alert>
+}
+
+<!-- Name -->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">نام</label>
+    <app-inputs
+      [control]="registerForm.controls.name"
+      [lable]="'نام'"
+      [placeholder]="'نام'"
+    ></app-inputs>
+  </div>
+
+  <!-- Email -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">ایمیل</label>
+    <app-inputs
+      [control]="registerForm.controls.email"
+      [lable]="'ایمیل'"
+      [placeholder]="'ایمیل'"
+    ></app-inputs>
+  </div>
+  <!-- Age -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">سن</label>
+    <app-inputs
+      [control]="registerForm.controls.age"
+      [lable]="'سن'"
+      [placeholder]="'سن'"
+      [type]="'number'"
+    ></app-inputs>
+  </div>
+  <!-- Password -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">رمز عبور</label>
+    <app-inputs
+      [control]="registerForm.controls.password"
+      [lable]="'رمز عبور'"
+      [placeholder]="'رمز عبور'"
+      [type]="'password'"
+    ></app-inputs>
+  </div>
+  <!-- Confirm Password -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">تکرار رمز عبور</label>
+    <app-inputs
+      [control]="registerForm.controls.confirmPassword"
+      [lable]="'تکرار رمز عبور'"
+      [placeholder]="'تکرار رمز عبور'"
+      [type]="'password'"
+    ></app-inputs>
+  </div>
+  <!-- Phone Number -->
+  <div class="mb-3 text-right">
+    <label class="inline-block mb-2 font-MorabbaMedium">شماره تماس</label>
+    <app-inputs
+      [control]="registerForm.controls.phone"
+      [lable]="'شماره تماس'"
+      [placeholder]="'شماره تماس'"
+      [type]="'number'"
+    ></app-inputs>
+  </div>
+  <button
+    type="submit"
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:bg-indigo-400 font-DanaBold"
+    [disabled]="registerForm.invalid || inSubmission"
+  >
+    ثبت نام
+  </button>
+</form>
