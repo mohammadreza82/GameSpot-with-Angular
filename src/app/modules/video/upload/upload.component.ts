@@ -10,6 +10,7 @@ import { last, switchMap } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { ClipService } from '../../../services/clip.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-upload',
   standalone: false,
@@ -36,13 +37,16 @@ export class UploadComponent {
     title: this.title,
   });
 
-  constructor(
-    private clipsService: ClipService,
-    private auth: AngularFireAuth
-  ) {
-    auth.user.subscribe((user) => (this.user = user));
-  }
+  // constructor(
+  //   private clipsService: ClipService,
+  //   private auth: AngularFireAuth
+  // ) {
+  //   auth.user.subscribe((user) => (this.user = user));
+  // }
   // private storage: AngularFireStorage
+
+  constructor(private router: Router) {}
+
   handleStoreFile(event: Event) {
     this.isDragOver = false;
     // console.log(event);
@@ -59,6 +63,8 @@ export class UploadComponent {
   }
 
   handleUploadFile() {
+    this.uploadForm.disable();
+
     console.log('File Uploaded...');
     const clipFileName = uuid();
     const clipPath = `clipes/${clipFileName}`;
@@ -95,8 +101,11 @@ export class UploadComponent {
           this.alertColor = 'green';
           this.alertMsg = 'اپلود با موفقیت انجام شد!';
           this.showPercenTage = false;
+
+          // this.router.navigate(['clip',clipDocRef])
         },
         error: (err) => {
+          this.uploadForm.enable();
           this.alertColor = 'red';
           this.alertMsg = 'اپلود با خطا مواجه شد!';
           this.showPercenTage = false;
