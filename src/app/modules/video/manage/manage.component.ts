@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ClipService } from '../../../services/clip.service';
 
 @Component({
   selector: 'app-manage',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './manage.component.html',
   styleUrl: './manage.component.scss'
 })
-export class ManageComponent {
+export class ManageComponent implements OnInit{
+// constructor(private clipService:ClipService){}
+  ngOnInit(): void {
+    // this.clipService.getUserClips().subscribe((res)=>{
+    //   console.log(res);
+      
+    // })
+    
+  }
 
 }
