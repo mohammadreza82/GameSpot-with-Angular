@@ -20,9 +20,13 @@ export class ManageComponent implements OnInit {
     //   console.log(documents);
     //   this.clips = [];
     //   documents.forEach((doc) => {
-    //     this.clips.push({
-    //       ...doc.data(),
-    //     });
+    //     const exist=this.clips.some(clip=>clip.uid===doc.data().uid)
+
+    //     if (!exist) {    
+    //       this.clips.push({
+    //         ...doc.data(),
+    //       });
+    //     }
     //   });
     // });
   }
