@@ -9,12 +9,14 @@ import { EventBlockerDirective } from '../../shared/directives/event-blocker.dir
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from "../../shared/shared.module";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
   declarations: [
     ManageComponent,
-    UploadComponent
+    UploadComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     EventBlockerDirective,
     ReactiveFormsModule,
     SharedModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    
 ]
 })
 export class VideoModule { }
