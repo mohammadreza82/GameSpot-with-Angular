@@ -10,7 +10,7 @@ import { ModalService } from '../../../services/modal.service';
   styleUrl: './manage.component.scss',
 })
 export class ManageComponent implements OnInit {
-  activeClip:IClip|null=null
+  activeClip: IClip | null = null;
   clips: IClip[] = [];
 
   // constructor(private clipService: ClipService) {}
@@ -21,8 +21,7 @@ export class ManageComponent implements OnInit {
     //   this.clips = [];
     //   documents.forEach((doc) => {
     //     const exist=this.clips.some(clip=>clip.uid===doc.data().uid)
-
-    //     if (!exist) {    
+    //     if (!exist) {
     //       this.clips.push({
     //         ...doc.data(),
     //       });
@@ -33,6 +32,24 @@ export class ManageComponent implements OnInit {
   openModal(event: Event, clip: IClip) {
     event.preventDefault();
     this.modal.toggleModal('editClip');
-    this.activeClip=clip
+    this.activeClip = clip;
+  }
+
+  handleupdate(e: IClip) {
+    this.clips.forEach((element, index) => {
+      if (element.uid) {
+        this.clips[index].title = e.title;
+      }
+    });
+  }
+
+  handleDeleteCLip(event: Event, clip: IClip) {
+    event.preventDefault();
+    // this.clipService.deleteClip(clip)
+    this.clips.forEach((element, index) => {
+      if (element.uid === clip.uid) {
+        this.clips.slice(index, 1);
+      }
+    });
   }
 }
